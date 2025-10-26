@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Yellow Splash Text</title>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* Basic Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    /* Full screen container */
+    body, html {
+        height: 100%;
+        background-color: #222;  /* Dark background to mimic Minecraft theme */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Minecraft', sans-serif;
+    }
+
+    .box {
+        text-align: center;
+    }
+
+    /* Minecraft-style splash text */
+    .splash-text {
+        font-size: 3rem;
+        color: #FFCC00; /* Minecraft yellow color */
+        font-family: 'Minecraft', sans-serif;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        opacity: 0; /* Start with no visibility */
+        transform: translateY(-50px); /* Initial position for animation */
+        transition: all 1s ease-in-out;
+        margin: 10px 0;
+    }
+
+    </style>
+    <script>
+        window.onload = () => {
+    const box = document.getElementById('box');
+    const messages = [
+        'Welcome to Minecraft!',
+        'The adventure begins now!',
+        'Explore the world!',
+        'Craft your destiny!',
+        'Survive the night!'
+    ];
+
+    // Function to create and display each splash text
+    function showSplashText(message, delay) {
+        const splashText = document.createElement('div');
+        splashText.classList.add('splash-text');
+        splashText.textContent = message;
+        box.appendChild(splashText);
+
+        // Use setTimeout to show the splash text with animation
+        setTimeout(() => {
+            splashText.style.opacity = 1;
+            splashText.style.transform = 'translateY(0)';
+        }, delay); // Delay for showing
+
+        // Optionally, hide the splash text after some time (e.g., 5 seconds)
+        setTimeout(() => {
+            splashText.style.opacity = 0;
+            splashText.style.transform = 'translateY(-50px)';
+        }, delay + 5000); // Hide 5 seconds after showing
+    }
+
+    // Show each message every 3 seconds
+    messages.forEach((message, index) => {
+        const delay = index * 3000; // Delay each message by 3 seconds
+        showSplashText(message, delay);
+        });
+    };
+
+    </script>
+</head>
+
+<body>
+    <div class="box" id="box">
+        <!-- The splash texts will be added here dynamically -->
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

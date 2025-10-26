@@ -1,0 +1,521 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZMS Education</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --yellow: #f4c95d;
+      --black: #121212;
+      --cream: #fdfaf6;
+      --gray-light: #e8e8e8;
+      --gray-dark: #555555;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream);
+      color: var(--black);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--yellow);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    a:hover {
+      color: #d4b752;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    header {
+      background: var(--black);
+      padding: 20px 0;
+      color: var(--yellow);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      cursor: pointer;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      font-weight: 600;
+      font-size: 16px;
+      padding: 5px 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      border-bottom-color: var(--yellow);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, var(--yellow) 0%, #f9f0b3 100%);
+      padding: 100px 20px 60px;
+      text-align: center;
+      border-radius: 0 0 50% 50% / 100% 100% 0 0;
+      box-shadow: 0 6px 15px rgba(244,201,93,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      color: var(--black);
+      text-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 600px;
+      margin: 0 auto 30px;
+      color: var(--gray-dark);
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background-color: var(--black);
+      color: var(--yellow);
+      padding: 14px 40px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .btn-primary:hover {
+      background-color: #222;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+    }
+
+    /* About Section */
+    #about {
+      padding: 80px 20px;
+      background-color: var(--cream);
+      text-align: center;
+    }
+
+    #about h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .about-content {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+      justify-content: center;
+    }
+
+    .about-text {
+      flex: 1 1 400px;
+      font-size: 1.1rem;
+      color: var(--gray-dark);
+      line-height: 1.7;
+    }
+
+    .about-img {
+      flex: 1 1 300px;
+      max-width: 320px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .about-img img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .about-img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Services Section */
+    #services {
+      padding: 80px 20px;
+      background: linear-gradient(180deg, var(--cream) 0%, #fefae0 100%);
+      text-align: center;
+    }
+
+    #services h2 {
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .services-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .service-item {
+      background: white;
+      border-radius: 20px;
+      padding: 30px 25px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: box-shadow 0.3s ease;
+      cursor: default;
+    }
+
+    .service-item:hover {
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+    }
+
+    /* Icon style */
+    .service-icon {
+      font-size: 2.5rem;
+      color: var(--yellow);
+      flex-shrink: 0;
+    }
+
+    /* Testimonials Section */
+    #testimonials {
+      background-color: var(--black);
+      color: var(--yellow);
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    #testimonials h2 {
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      font-weight: 700;
+    }
+
+    .testimonials-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .testimonial {
+      background: #1f1f1f;
+      padding: 25px 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      font-style: italic;
+      position: relative;
+      font-weight: 500;
+    }
+
+    .testimonial::before {
+      content: '“';
+      font-size: 4rem;
+      color: var(--yellow);
+      position: absolute;
+      top: 10px;
+      left: 20px;
+      opacity: 0.2;
+      font-weight: 700;
+    }
+
+    .testimonial-footer {
+      margin-top: 15px;
+      font-weight: 700;
+      font-style: normal;
+      color: var(--gray-light);
+      text-align: right;
+    }
+
+    /* Partners Section */
+    #partners {
+      padding: 60px 20px;
+      background: var(--cream);
+      text-align: center;
+    }
+
+    #partners h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .partners-logos {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+      max-width: 700px;
+      margin: 0 auto;
+      filter: grayscale(70%);
+      transition: filter 0.3s ease;
+    }
+
+    .partners-logos img {
+      max-height: 60px;
+      object-fit: contain;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
+
+    .partners-logos img:hover {
+      filter: none;
+    }
+
+    /* Contact Section */
+    #contact {
+      padding: 80px 20px;
+      background-color: var(--yellow);
+      color: var(--black);
+      text-align: center;
+      border-radius: 30px 30px 0 0;
+      box-shadow: 0 -6px 15px rgba(244,201,93,0.4);
+    }
+
+    #contact h2 {
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+
+    #contact p {
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      font-weight: 500;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    input, textarea {
+      padding: 14px 15px;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: none;
+      outline: none;
+      resize: vertical;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+    }
+
+    input:focus, textarea:focus {
+      box-shadow: 0 0 6px 2px var(--black);
+    }
+
+    textarea {
+      min-height: 120px;
+    }
+
+    button {
+      background-color: var(--black);
+      color: var(--yellow);
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 15px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #222;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--black);
+      color: var(--yellow);
+      padding: 20px 0;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.9rem;
+      letter-spacing: 1.2px;
+      margin-top: 40px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .about-content {
+        flex-direction: column;
+      }
+
+      nav ul {
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="logo">ZMS EDUCATION</div>
+      <nav>
+        <ul>
+          <li><a href="#about" class="active">About</a></li>
+          <li><a href="#services">Courses</a></li>
+          <li><a href="#testimonials">Success Stories</a></li>
+          <li><a href="#partners">Partners</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Introduction">
+    <h1>Transform Your Future with ZMS Education</h1>
+    <p>Empowering the next generation with cutting-edge IT and mainframe skills for career success.</p>
+    <button class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get Started Now</button>
+  </section>
+
+  <section id="about" aria-labelledby="about-heading">
+    <h2 id="about-heading">Why Choose ZMS Education?</h2>
+    <div class="about-content">
+      <div class="about-text">
+        <p>
+          At ZMS Education, we bridge the gap between traditional mainframe technology and modern IT demands.
+          Our innovative curriculum, industry-aligned training, and expert mentors ensure you're ready to thrive
+          in top-tier companies like IBM, Barclays, and beyond.
+        </p>
+        <p>
+          Join thousands of students who have launched successful careers in tech and finance, mastering
+          skills that are in high demand globally.
+        </p>
+      </div>
+      <div class="about-img" aria-label="Students learning modern mainframe technology">
+        <img src="https://images.unsplash.com/photo-1551836022-4296a1f0b03e?auto=format&fit=crop&w=400&q=80" alt="Students collaborating on computers in a modern classroom" />
+      </div>
+    </div>
+  </section>
+
+  <section id="services" aria-labelledby="courses-heading">
+    <h2 id="courses-heading">Our Courses & Training</h2>
+    <div class="services-list">
+      <div class="service-item">
+        <div class="service-icon">💻</div>
+        <div>Degree and traditional apprenticeships</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">⚙️</div>
+        <div>internships</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🔐</div>
+        <div>Mentorship</div>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🚀</div>
+        <div>Workshops and volunteers</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" aria-labelledby="success-heading">
+    <h2 id="success-heading">Success Stories</h2>
+    <div class="testimonials-container">
+      <article class="testimonial">
+        "Inspiring speech"
+        <footer class="testimonial-footer">— From people in the industry </footer>
+      </article>
+      <article class="testimonial">
+        "Inspiring speech"
+        <footer class="testimonial-footer">— From people in the industry</footer>
+      </article>
+      <article class="testimonial">
+        "Inspiring speech"
+        <footer class="testimonial-footer">— From people in the industry</footer>
+      </article>
+    </div>
+  </section>
+
+  <section id="partners" aria-labelledby="partners-heading">
+    <h2 id="partners-heading">Trusted By Industry Leaders</h2>
+    <div class="partners-logos" role="list">
+      <!-- Replace # with actual partner website or info -->
+      <a href="#" role="listitem"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" alt="IBM Logo" /></a>
+      <a href="#" role="listitem"><img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Barclays_logo.svg" alt="Barclays Logo" /></a>
+      <a href="#" role="listitem"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Microsoft_logo_-_2012.svg" alt="Microsoft Logo" /></a>
+      <a href="#" role="listitem"><img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Accenture_logo.svg" alt="Accenture Logo" /></a>
+      <!-- Add more logos as needed -->
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-heading">
+    <h2 id="contact-heading">Ready to Take the Next Step?</h2>
+    <p>Contact us today to learn how ZMS Education can transform your career.</p>
+    <form action="#" method="POST" aria-label="Contact form">
+      <input type="text" name="name" placeholder="Your Name" required aria-required="true" />
+      <input type="email" name="email" placeholder="Your Email" required aria-required="true" />
+      <textarea name="message" placeholder="How can we help you?" required aria-required="true"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 ZMS Education. All rights reserved.
+  </footer>
+</body>
+</html>
